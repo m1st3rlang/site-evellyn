@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para Evellyn 💜</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: radial-gradient(circle at top, #6a0dad, #2e004f);
+    color: white;
+    text-align: center;
+    overflow-x: hidden;
+}
+
+/* Estrelas */
+.stars {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.stars span {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: white;
+    border-radius: 50%;
+    animation: twinkle 3s infinite ease-in-out;
+}
+
+@keyframes twinkle {
+    0%,100% { opacity: 0.2; }
+    50% { opacity: 1; }
+}
+
+.container {
+    padding: 40px 20px;
+}
+
+h1 {
+    font-size: 26px;
+}
+
+.countdown {
+    font-size: 24px;
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+.box {
+    background: rgba(255,255,255,0.15);
+    padding: 25px;
+    border-radius: 20px;
+    margin-top: 30px;
+    backdrop-filter: blur(10px);
+}
+
+input {
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    width: 80%;
+    margin-top: 10px;
+    text-align: center;
+}
+
+button {
+    padding: 12px 25px;
+    border-radius: 10px;
+    border: none;
+    margin-top: 15px;
+    background: #e0b3ff;
+    color: #2e004f;
+    font-weight: bold;
+}
+
+.hidden {
+    display: none;
+}
+
+img {
+    width: 100%;
+    border-radius: 20px;
+    margin-top: 15px;
+}
+
+.music-btn {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    background: rgba(255,255,255,0.2);
+    padding: 8px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+}
+
+.timeline {
+    margin-top: 30px;
+}
+
+.memory {
+    background: rgba(255,255,255,0.1);
+    padding: 20px;
+    border-radius: 20px;
+    margin-bottom: 30px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="stars" id="stars"></div>
+
+<audio id="bg-music" autoplay loop>
+    <source src="musica.mp3" type="audio/mpeg">
+</audio>
+
+<button class="music-btn" onclick="toggleMusic()">🔊 Música</button>
+
+<div class="container">
+
+<div id="countdown-section">
+<h1>Algo mágico está a ser preparado para ti, Evellyn 💜</h1>
+<div class="countdown" id="countdown"></div>
+</div>
+
+<div id="password-section" class="hidden">
+<div class="box">
+<h1>Bem-vinda Evellyn 💜</h1>
+<p>Coloca a data que mudou a nossa história</p>
+<input type="text" id="password" placeholder="DDMMAAAA">
+<br>
+<button onclick="checkPassword()">Entrar</button>
+<p id="error"></p>
+</div>
+</div>
+
+<div id="secret-section" class="hidden">
+
+<h1>Feliz Aniversário 💜</h1>
+
+<div class="timeline">
+
+    <div class="memory">
+        <h2>30/10/2025 💬</h2>
+        <img src="foto1.jpg">
+        <p>Aqui começou algo que mudou a minha vida.</p>
+    </div>
+
+    <div class="memory">
+        <h2>Primeiras risadas 😂</h2>
+        <img src="foto2.jpg">
+        <p>Foi aqui que percebi que contigo tudo era mais leve.</p>
+    </div>
+
+    <div class="memory">
+        <h2>Momentos especiais 🥺</h2>
+        <img src="foto3.jpg">
+        <p>Cada conversa nossa era um passo mais perto de algo maior.</p>
+    </div>
+
+</div>
+
+<p style="margin-top:40px;">
+Obrigado por seres a melhor parte dos meus dias 💜
+</p>
+
+</div>
+
+</div>
+
+<script>
+
+/* Criar estrelas */
+const starsContainer = document.getElementById("stars");
+for(let i = 0; i < 80; i++){
+    const star = document.createElement("span");
+    star.style.top = Math.random() * 100 + "%";
+    star.style.left = Math.random() * 100 + "%";
+    star.style.animationDuration = (Math.random() * 3 + 2) + "s";
+    starsContainer.appendChild(star);
+}
+
+/* Contagem regressiva */
+const targetDate = new Date("March 27, 2026 00:00:00").getTime();
+
+const countdownFunction = setInterval(function() {
+    const now = new Date().getTime();
+    const distance = targetDate - now;
+
+    if (distance <= 0) {
+        clearInterval(countdownFunction);
+        document.getElementById("countdown-section").classList.add("hidden");
+        document.getElementById("password-section").classList.remove("hidden");
+    } else {
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById("countdown").innerHTML =
+            days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+    }
+}, 1000);
+
+/* Senha */
+function checkPassword() {
+    const password = document.getElementById("password").value;
+    if(password === "30102025") {
+        document.getElementById("password-section").classList.add("hidden");
+        document.getElementById("secret-section").classList.remove("hidden");
+    } else {
+        document.getElementById("error").innerText =
+        "Essa não foi a data que começou tudo… tenta outra vez 💜";
+    }
+}
+
+/* Música */
+const music = document.getElementById("bg-music");
+
+function toggleMusic() {
+    if (music.paused) {
+        music.play();
+    } else {
+        music.pause();
+    }
+}
+
+document.body.addEventListener("click", function() {
+    music.play().catch(() => {});
+}, { once: true });
+
+</script>
+
+</body>
+</html>
