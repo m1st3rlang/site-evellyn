@@ -21,116 +21,44 @@ transition:opacity 1s ease;
 opacity:0;
 }
 
-/* estrelas */
-
-.stars{
-position:fixed;
-width:100%;
-height:100%;
-z-index:-3;
-}
-
-.stars span{
-position:absolute;
-width:3px;
-height:3px;
-background:white;
-border-radius:50%;
-animation:twinkle 3s infinite ease-in-out;
-}
-
-@keyframes twinkle{
-0%,100%{opacity:0.2}
-50%{opacity:1}
-}
-
-/* corações */
-
-.heart{
-position:fixed;
-bottom:-20px;
-font-size:20px;
-animation:floatUp 8s linear infinite;
-opacity:0.7;
-z-index:-2;
-}
-
-@keyframes floatUp{
-0%{
-transform:translateY(0);
-opacity:0;
-}
-50%{
-opacity:1;
-}
-100%{
-transform:translateY(-120vh);
-opacity:0;
-}
-}
-
 .container{
 padding:40px 20px;
 max-width:500px;
 margin:auto;
 }
 
-.countdown{
-font-size:24px;
-margin-top:20px;
-font-weight:bold;
-}
-
-.message-box{
-background:rgba(255,255,255,0.15);
-padding:20px;
-border-radius:20px;
-margin-top:25px;
-}
-
-.special{
-font-size:22px;
-margin-top:10px;
-font-weight:bold;
-}
-
-.box{
-background:rgba(255,255,255,0.15);
-padding:25px;
-border-radius:20px;
-margin-top:30px;
-}
-
 .hidden{
 display:none;
-}
-
-.timeline{
-margin-top:40px;
-}
-
-.memory{
-background:rgba(255,255,255,0.1);
-padding:20px;
-border-radius:20px;
-margin-bottom:40px;
 }
 
 img{
 width:100%;
 border-radius:20px;
-margin-top:10px;
+margin-top:20px;
+}
+
+button{
+margin-top:30px;
+padding:12px 20px;
+border:none;
+border-radius:10px;
+background:#d4a6ff;
+font-size:16px;
+cursor:pointer;
 }
 
 audio{
 width:100%;
-margin-top:15px;
+margin-top:20px;
 }
 
-.birthday-text{
-font-size:22px;
-line-height:1.6;
-margin-top:20px;
+/* fogos */
+
+canvas{
+position:fixed;
+top:0;
+left:0;
+pointer-events:none;
 }
 
 </style>
@@ -138,45 +66,41 @@ margin-top:20px;
 
 <body>
 
-<div class="stars" id="stars"></div>
+<canvas id="fireworks"></canvas>
 
 <div class="container">
+
+<!-- PAGINA 1 -->
 
 <div id="countdown-section">
 
 <h1>Algo mágico está a ser preparado para ti, Evellyn 💜</h1>
 
-<div class="countdown" id="countdown"></div>
-
-<div class="message-box">
+<div id="countdown"></div>
 
 <p>Enquanto o teu presente não chega...</p>
 
-<div class="special">Te amo muito bebê 💜</div>
-
 <img src="primeirafoto.jpe">
 
-<p style="margin-top:20px">Uma música para ti 💜</p>
+<p>Uma música para ti 💜</p>
 
 <audio controls>
-<source src="Music1.mp3" type="audio/mpeg">
+<source src="Music1.mp3">
 </audio>
 
 </div>
 
-</div>
+<!-- SENHA -->
 
 <div id="password-section" class="hidden">
 
-<div class="box">
-
-<h1>Bem-vinda Evellyn 💜</h1>
+<h2>Bem-vinda Evellyn 💜</h2>
 
 <p>Coloca a data que mudou a nossa história</p>
 
 <input type="text" id="password" placeholder="DDMMAAAA">
 
-<br><br>
+<br>
 
 <button onclick="checkPassword()">Entrar</button>
 
@@ -184,27 +108,46 @@ margin-top:20px;
 
 </div>
 
-</div>
+<!-- PAGINA 2 PARABENS -->
 
-<div id="secret-section" class="hidden">
+<div id="birthday-section" class="hidden">
 
-<img src="começoconversa.PNG">
+<h1>Feliz aniversário Evellyn 🎉</h1>
 
-<div class="birthday-text">
-
-Evellyn…
+<p style="font-size:22px;line-height:1.6">
 
 Aeeee, chegou o teu dia, meu amor.  
 E eu queria te desejar um feliz aniversário de uma forma especial, porque você é uma pessoa muito especial para mim.
 
-Desde que te conheci e começámos a conversar mais, fui percebendo cada vez mais o quanto você é uma pessoa maravilhosa. Espero que você nunca se esqueça disso.
+Desde que te conheci e fomos conversando mais, percebi o quanto você é uma pessoa maravilhosa.
 
-Desejo de coração que todos os teus planos, sonhos e desejos se realizem.  
-E quero que saibas que eu sempre vou estar aqui para te apoiar em tudo o que precisares.
+Desejo de coração que todos os teus sonhos e planos se realizem.
 
-Te amo muito, meu amor. ❤️
+Te amo muito ❤️
+
+</p>
+
+<button onclick="nextPage()">Continuar</button>
 
 </div>
+
+<!-- PAGINA 3 FOTO CONVERSA -->
+
+<div id="conversation-section" class="hidden">
+
+<h2>Lembra?</h2>
+
+<p style="font-size:20px">Foi aqui que tudo começou...</p>
+
+<img src="começoconversa.PNG">
+
+<p>
+
+<!-- ESCREVE AQUI O TEXTO QUE QUISERES -->
+
+AQUI VOCE ESCREVE O TEXTO PARA ELA SOBRE ESSE MOMENTO.
+
+</p>
 
 </div>
 
@@ -212,45 +155,9 @@ Te amo muito, meu amor. ❤️
 
 <script>
 
-/* estrelas */
-
-const starsContainer=document.getElementById("stars")
-
-for(let i=0;i<80;i++){
-const star=document.createElement("span")
-star.style.top=Math.random()*100+"%"
-star.style.left=Math.random()*100+"%"
-star.style.animationDuration=(Math.random()*3+2)+"s"
-starsContainer.appendChild(star)
-}
-
-/* CORAÇÕES */
-
-function createHeart(){
-
-const heart=document.createElement("div")
-
-heart.classList.add("heart")
-
-heart.innerHTML="💜"
-
-heart.style.left=Math.random()*100+"%"
-
-heart.style.fontSize=(Math.random()*20+10)+"px"
-
-document.body.appendChild(heart)
-
-setTimeout(()=>{
-heart.remove()
-},8000)
-
-}
-
-setInterval(createHeart,1500)
-
 /* CONTAGEM */
 
-const targetDate = new Date("2020-01-01T00:00:00-03:00").getTime();
+const targetDate = new Date("2026-03-27T00:00:00-03:00").getTime();
 
 const countdownFunction=setInterval(function(){
 
@@ -286,27 +193,85 @@ const password=document.getElementById("password").value
 
 if(password==="30102025"){
 
-document.body.classList.add("fade-out")
-
-setTimeout(()=>{
-
 document.getElementById("password-section").classList.add("hidden")
-document.getElementById("secret-section").classList.remove("hidden")
+document.getElementById("birthday-section").classList.remove("hidden")
 
-document.body.classList.remove("fade-out")
-
-},1000)
+startFireworks()
 
 }else{
 
-document.getElementById("error").innerText="Essa não foi a data que começou tudo… 💜"
+document.getElementById("error").innerText="Essa não foi a data que começou tudo…"
 
 }
 
 }
+
+/* IR PARA PAGINA 3 */
+
+function nextPage(){
+
+document.getElementById("birthday-section").classList.add("hidden")
+document.getElementById("conversation-section").classList.remove("hidden")
+
+}
+
+/* FOGOS DE ARTIFICIO */
+
+const canvas=document.getElementById("fireworks")
+const ctx=canvas.getContext("2d")
+
+canvas.width=window.innerWidth
+canvas.height=window.innerHeight
+
+let particles=[]
+
+function startFireworks(){
+
+setInterval(()=>{
+
+for(let i=0;i<50;i++){
+
+particles.push({
+x:canvas.width/2,
+y:canvas.height/2,
+dx:(Math.random()-0.5)*8,
+dy:(Math.random()-0.5)*8,
+life:100
+})
+
+}
+
+},500)
+
+}
+
+function animate(){
+
+requestAnimationFrame(animate)
+
+ctx.fillStyle="rgba(0,0,0,0.2)"
+ctx.fillRect(0,0,canvas.width,canvas.height)
+
+particles.forEach((p,i)=>{
+
+p.x+=p.dx
+p.y+=p.dy
+p.life--
+
+ctx.fillStyle="purple"
+ctx.fillRect(p.x,p.y,3,3)
+
+if(p.life<=0){
+particles.splice(i,1)
+}
+
+})
+
+}
+
+animate()
 
 </script>
 
 </body>
 </html>
-
