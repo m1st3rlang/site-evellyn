@@ -62,15 +62,37 @@ margin-top:10px;
 font-weight:bold;
 }
 
+.box{
+background:rgba(255,255,255,0.15);
+padding:25px;
+border-radius:20px;
+margin-top:30px;
+}
+
+.hidden{
+display:none;
+}
+
+.timeline{
+margin-top:30px;
+}
+
+.memory{
+background:rgba(255,255,255,0.1);
+padding:20px;
+border-radius:20px;
+margin-bottom:40px;
+}
+
 img{
 width:100%;
 border-radius:20px;
-margin-top:15px;
+margin-top:10px;
 }
 
 audio{
-margin-top:20px;
 width:100%;
+margin-top:15px;
 }
 
 </style>
@@ -81,6 +103,8 @@ width:100%;
 <div class="stars" id="stars"></div>
 
 <div class="container">
+
+<div id="countdown-section">
 
 <h1>Algo mágico está a ser preparado para ti, Evellyn 💜</h1>
 
@@ -104,7 +128,63 @@ width:100%;
 
 </div>
 
+<div id="password-section" class="hidden">
+
+<div class="box">
+
+<h1>Bem-vinda Evellyn 💜</h1>
+
+<p>Coloca a data que mudou a nossa história</p>
+
+<input type="text" id="password" placeholder="DDMMAAAA">
+
+<br><br>
+
+<button onclick="checkPassword()">Entrar</button>
+
+<p id="error"></p>
+
+</div>
+
+</div>
+
+<div id="secret-section" class="hidden">
+
+<h1>Feliz Aniversário 💜</h1>
+
+<div class="timeline">
+
+<div class="memory">
+<h2>30/10/2025 💬</h2>
+<img src="foto1.jpg">
+<p>Aqui começou algo que mudou a minha vida.</p>
+</div>
+
+<div class="memory">
+<h2>Primeiras risadas 😂</h2>
+<img src="foto2.jpg">
+<p>Foi aqui que percebi que contigo tudo era mais leve.</p>
+</div>
+
+<div class="memory">
+<h2>Momentos especiais 🥺</h2>
+<img src="foto3.jpg">
+<p>Cada conversa nossa era um passo mais perto de algo maior.</p>
+</div>
+
+</div>
+
+<p style="margin-top:40px">
+Obrigado por seres a melhor parte dos meus dias 💜
+</p>
+
+</div>
+
+</div>
+
 <script>
+
+/* estrelas */
 
 const starsContainer=document.getElementById("stars")
 
@@ -116,22 +196,44 @@ star.style.animationDuration=(Math.random()*3+2)+"s"
 starsContainer.appendChild(star)
 }
 
-const targetDate=new Date("March 27, 2026 00:00:00").getTime()
+/* DATA DE TESTE (já passou) */
+
+const targetDate=new Date("January 1, 2024 00:00:00").getTime()
 
 const countdownFunction=setInterval(function(){
 
 const now=new Date().getTime()
 const distance=targetDate-now
 
-const days=Math.floor(distance/(1000*60*60*24))
-const hours=Math.floor((distance%(1000*60*60*24))/(1000*60*60))
-const minutes=Math.floor((distance%(1000*60*60))/(1000*60))
-const seconds=Math.floor((distance%(1000*60))/1000)
+if(distance<=0){
 
-document.getElementById("countdown").innerHTML=
-days+"d "+hours+"h "+minutes+"m "+seconds+"s"
+clearInterval(countdownFunction)
+
+document.getElementById("countdown-section").classList.add("hidden")
+document.getElementById("password-section").classList.remove("hidden")
+
+}
 
 },1000)
+
+/* senha */
+
+function checkPassword(){
+
+const password=document.getElementById("password").value
+
+if(password==="30102025"){
+
+document.getElementById("password-section").classList.add("hidden")
+document.getElementById("secret-section").classList.remove("hidden")
+
+}else{
+
+document.getElementById("error").innerText="Essa não foi a data que começou tudo… 💜"
+
+}
+
+}
 
 </script>
 
