@@ -21,11 +21,13 @@ transition:opacity 1s ease;
 opacity:0;
 }
 
+/* estrelas */
+
 .stars{
 position:fixed;
 width:100%;
 height:100%;
-z-index:-2;
+z-index:-3;
 }
 
 .stars span{
@@ -40,6 +42,31 @@ animation:twinkle 3s infinite ease-in-out;
 @keyframes twinkle{
 0%,100%{opacity:0.2}
 50%{opacity:1}
+}
+
+/* corações */
+
+.heart{
+position:fixed;
+bottom:-20px;
+font-size:20px;
+animation:floatUp 8s linear infinite;
+opacity:0.7;
+z-index:-2;
+}
+
+@keyframes floatUp{
+0%{
+transform:translateY(0);
+opacity:0;
+}
+50%{
+opacity:1;
+}
+100%{
+transform:translateY(-120vh);
+opacity:0;
+}
 }
 
 .container{
@@ -115,8 +142,6 @@ margin-top:20px;
 
 <div class="container">
 
-<!-- PAGINA INICIAL -->
-
 <div id="countdown-section">
 
 <h1>Algo mágico está a ser preparado para ti, Evellyn 💜</h1>
@@ -141,8 +166,6 @@ margin-top:20px;
 
 </div>
 
-<!-- PAGINA DA SENHA -->
-
 <div id="password-section" class="hidden">
 
 <div class="box">
@@ -163,15 +186,13 @@ margin-top:20px;
 
 </div>
 
-<!-- PAGINA SECRETA -->
-
 <div id="secret-section" class="hidden">
-
-<!-- FOTO + TEXTO DE PARABENS -->
 
 <img src="começoconversa.PNG">
 
 <div class="birthday-text">
+
+Evellyn…
 
 Aeeee, chegou o teu dia, meu amor.  
 E eu queria te desejar um feliz aniversário de uma forma especial, porque você é uma pessoa muito especial para mim.
@@ -182,30 +203,6 @@ Desejo de coração que todos os teus planos, sonhos e desejos se realizem.
 E quero que saibas que eu sempre vou estar aqui para te apoiar em tudo o que precisares.
 
 Te amo muito, meu amor. ❤️
-
-</div>
-
-<!-- MEMORIAS -->
-
-<div class="timeline">
-
-<div class="memory">
-<h2>30/10/2025 💬</h2>
-<img src="foto1.jpg">
-<p>ESCREVE AQUI O TEU TEXTO</p>
-</div>
-
-<div class="memory">
-<h2>Primeira conversa especial</h2>
-<img src="foto2.jpg">
-<p>ESCREVE AQUI O TEU TEXTO</p>
-</div>
-
-<div class="memory">
-<h2>Momentos especiais 🥺</h2>
-<img src="foto3.jpg">
-<p>ESCREVE AQUI O TEU TEXTO</p>
-</div>
 
 </div>
 
@@ -227,7 +224,31 @@ star.style.animationDuration=(Math.random()*3+2)+"s"
 starsContainer.appendChild(star)
 }
 
-/* DATA DO ANIVERSARIO - SAO PAULO */
+/* CORAÇÕES */
+
+function createHeart(){
+
+const heart=document.createElement("div")
+
+heart.classList.add("heart")
+
+heart.innerHTML="💜"
+
+heart.style.left=Math.random()*100+"%"
+
+heart.style.fontSize=(Math.random()*20+10)+"px"
+
+document.body.appendChild(heart)
+
+setTimeout(()=>{
+heart.remove()
+},8000)
+
+}
+
+setInterval(createHeart,1500)
+
+/* CONTAGEM */
 
 const targetDate = new Date("2026-03-27T00:00:00-03:00").getTime();
 
@@ -257,7 +278,7 @@ days+"d "+hours+"h "+minutes+"m "+seconds+"s"
 
 },1000)
 
-/* VERIFICAR SENHA */
+/* SENHA */
 
 function checkPassword(){
 
