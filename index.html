@@ -79,7 +79,7 @@ display:none;
 }
 
 .timeline{
-margin-top:30px;
+margin-top:40px;
 }
 
 .memory{
@@ -100,18 +100,10 @@ width:100%;
 margin-top:15px;
 }
 
-.birthday{
-margin-top:40px;
-}
-
-.birthday img{
-margin-top:20px;
-}
-
 .birthday-text{
-font-size:24px;
+font-size:22px;
+line-height:1.6;
 margin-top:20px;
-line-height:1.5;
 }
 
 </style>
@@ -122,6 +114,8 @@ line-height:1.5;
 <div class="stars" id="stars"></div>
 
 <div class="container">
+
+<!-- PAGINA INICIAL -->
 
 <div id="countdown-section">
 
@@ -147,6 +141,8 @@ line-height:1.5;
 
 </div>
 
+<!-- PAGINA DA SENHA -->
+
 <div id="password-section" class="hidden">
 
 <div class="box">
@@ -167,36 +163,29 @@ line-height:1.5;
 
 </div>
 
+<!-- PAGINA SECRETA -->
+
 <div id="secret-section" class="hidden">
 
-<div class="birthday">
+<!-- FOTO + TEXTO DE PARABENS -->
 
-<img src="foto1.jpg">
+<img src="começoconversa.PNG">
 
 <div class="birthday-text">
 
-FELIZ ANIVERSÁRIO EVELLYN 💜
-
-<br><br>
-
-<!-- ESCREVE AQUI O TEU TEXTO -->
-
-Aeeee, chegou o teu dia, meu amor.
+Aeeee, chegou o teu dia, meu amor.  
 E eu queria te desejar um feliz aniversário de uma forma especial, porque você é uma pessoa muito especial para mim.
 
-Desde que te conheci e começámos a conversar mais, fui percebendo cada vez mais o quanto você é uma pessoa maravilhosa. A tua forma de ser, de falar, de ver as coisas… tudo isso me mostrou o quão incrível você é. E eu espero que você nunca se esqueça disso.
+Desde que te conheci e começámos a conversar mais, fui percebendo cada vez mais o quanto você é uma pessoa maravilhosa. Espero que você nunca se esqueça disso.
 
-Hoje eu só quero que saibas que desejo de coração que todos os teus planos, sonhos e desejos se realizem. Você merece coisas lindas na vida, e merece ser muito feliz.
+Desejo de coração que todos os teus planos, sonhos e desejos se realizem.  
+E quero que saibas que eu sempre vou estar aqui para te apoiar em tudo o que precisares.
 
-E independentemente de qualquer coisa, eu quero que saibas que eu sempre vou estar aqui para te apoiar, te ouvir e caminhar ao teu lado no que for preciso.
-
-Te amo muito, meu amor. ❤️  
-
-<!-- AQUI TU PODES ESCREVER O TEXTO QUE QUISERES -->
+Te amo muito, meu amor. ❤️
 
 </div>
 
-</div>
+<!-- MEMORIAS -->
 
 <div class="timeline">
 
@@ -238,7 +227,7 @@ star.style.animationDuration=(Math.random()*3+2)+"s"
 starsContainer.appendChild(star)
 }
 
-/* horário São Paulo */
+/* DATA DO ANIVERSARIO - SAO PAULO */
 
 const targetDate = new Date("2026-03-27T00:00:00-03:00").getTime();
 
@@ -267,6 +256,8 @@ days+"d "+hours+"h "+minutes+"m "+seconds+"s"
 }
 
 },1000)
+
+/* VERIFICAR SENHA */
 
 function checkPassword(){
 
