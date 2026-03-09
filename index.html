@@ -16,8 +16,6 @@ text-align:center;
 overflow-x:hidden;
 }
 
-/* estrelas */
-
 .stars{
 position:fixed;
 width:100%;
@@ -38,8 +36,6 @@ animation:twinkle 3s infinite ease-in-out;
 0%,100%{opacity:0.2}
 50%{opacity:1}
 }
-
-/* corações */
 
 .heart{
 position:fixed;
@@ -88,25 +84,6 @@ border-radius:20px;
 margin-top:30px;
 }
 
-input{
-padding:12px;
-border-radius:10px;
-border:none;
-width:80%;
-margin-top:10px;
-text-align:center;
-}
-
-button{
-padding:12px 25px;
-border-radius:10px;
-border:none;
-margin-top:15px;
-background:#e0b3ff;
-color:#2e004f;
-font-weight:bold;
-}
-
 .hidden{
 display:none;
 }
@@ -136,14 +113,8 @@ border-radius:20px;
 margin-top:10px;
 }
 
-.music-btn{
-position:fixed;
-top:15px;
-right:15px;
-background:rgba(255,255,255,0.2);
-padding:10px 15px;
-border-radius:20px;
-cursor:pointer;
+.music-player{
+margin-top:20px;
 }
 
 </style>
@@ -152,10 +123,6 @@ cursor:pointer;
 <body>
 
 <div class="stars" id="stars"></div>
-
-<audio id="bg-music" src="musica1.mp3" preload="auto"></audio>
-
-<button class="music-btn" onclick="toggleMusic()">🎵 Música</button>
 
 <div class="container">
 
@@ -173,6 +140,16 @@ cursor:pointer;
 
 <img src="primeirafoto.jpe">
 
+<div class="music-player">
+
+<p>Uma música para ti 💜</p>
+
+<audio controls>
+<source src="musica1.mp3" type="audio/mpeg">
+</audio>
+
+</div>
+
 </div>
 
 </div>
@@ -187,7 +164,7 @@ cursor:pointer;
 
 <input type="text" id="password" placeholder="DDMMAAAA">
 
-<br>
+<br><br>
 
 <button onclick="checkPassword()">Entrar</button>
 
@@ -233,8 +210,6 @@ Obrigado por seres a melhor parte dos meus dias 💜
 
 <script>
 
-/* estrelas */
-
 const starsContainer=document.getElementById("stars")
 
 for(let i=0;i<80;i++){
@@ -244,8 +219,6 @@ star.style.left=Math.random()*100+"%"
 star.style.animationDuration=(Math.random()*3+2)+"s"
 starsContainer.appendChild(star)
 }
-
-/* corações */
 
 function createHeart(){
 const heart=document.createElement("div")
@@ -258,8 +231,6 @@ setTimeout(()=>{heart.remove()},8000)
 }
 
 setInterval(createHeart,1500)
-
-/* contagem */
 
 const targetDate=new Date("March 27, 2026 00:00:00").getTime()
 
@@ -289,8 +260,6 @@ days+"d "+hours+"h "+minutes+"m "+seconds+"s"
 
 },1000)
 
-/* senha */
-
 function checkPassword(){
 
 const password=document.getElementById("password").value
@@ -310,8 +279,6 @@ document.getElementById("error").innerText="Essa não foi a data que começou tu
 
 }
 
-/* animação memórias */
-
 function revealMemories(){
 
 const memories=document.querySelectorAll(".memory")
@@ -323,22 +290,6 @@ memory.classList.add("show")
 },i*600)
 
 })
-
-}
-
-/* música */
-
-function toggleMusic(){
-
-const music=document.getElementById("bg-music")
-
-music.volume=1
-
-if(music.paused){
-music.play()
-}else{
-music.pause()
-}
 
 }
 
