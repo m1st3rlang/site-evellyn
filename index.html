@@ -16,6 +16,8 @@ text-align:center;
 overflow-x:hidden;
 }
 
+/* estrelas */
+
 .stars{
 position:fixed;
 width:100%;
@@ -36,6 +38,8 @@ animation:twinkle 3s infinite ease-in-out;
 0%,100%{opacity:0.2}
 50%{opacity:1}
 }
+
+/* corações */
 
 .heart{
 position:fixed;
@@ -139,6 +143,7 @@ right:15px;
 background:rgba(255,255,255,0.2);
 padding:10px 15px;
 border-radius:20px;
+cursor:pointer;
 }
 
 </style>
@@ -148,9 +153,7 @@ border-radius:20px;
 
 <div class="stars" id="stars"></div>
 
-<audio id="bg-music">
-<source src="musica1.mp3" type="audio/mpeg">
-</audio>
+<audio id="bg-music" src="musica1.mp3" preload="auto"></audio>
 
 <button class="music-btn" onclick="toggleMusic()">🎵 Música</button>
 
@@ -325,20 +328,16 @@ memory.classList.add("show")
 
 /* música */
 
-const music=document.getElementById("bg-music")
-
 function toggleMusic(){
 
-music.volume = 1
+const music=document.getElementById("bg-music")
+
+music.volume=1
 
 if(music.paused){
-
 music.play()
-
 }else{
-
 music.pause()
-
 }
 
 }
