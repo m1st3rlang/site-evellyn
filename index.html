@@ -21,6 +21,8 @@ transition:opacity 1s ease;
 opacity:0;
 }
 
+/* estrelas */
+
 .stars{
 position:fixed;
 width:100%;
@@ -162,25 +164,25 @@ margin-top:15px;
 <div class="memory">
 <h2>30/10/2025 💬</h2>
 <img src="foto1.jpg">
-<p>Aqui começou algo que mudou a minha vida.</p>
+<p>ESCREVE AQUI O TEU TEXTO</p>
 </div>
 
 <div class="memory">
-<h2>Primeiras risadas 😂</h2>
+<h2>Primeira conversa especial</h2>
 <img src="foto2.jpg">
-<p>Foi aqui que percebi que contigo tudo era mais leve.</p>
+<p>ESCREVE AQUI O TEU TEXTO</p>
 </div>
 
 <div class="memory">
 <h2>Momentos especiais 🥺</h2>
 <img src="foto3.jpg">
-<p>Cada conversa nossa era um passo mais perto de algo maior.</p>
+<p>ESCREVE AQUI O TEU TEXTO</p>
 </div>
 
 </div>
 
 <p style="margin-top:40px">
-Obrigado por seres a melhor parte dos meus dias 💜
+Feliz aniversário meu amor 💜
 </p>
 
 </div>
@@ -201,9 +203,9 @@ star.style.animationDuration=(Math.random()*3+2)+"s"
 starsContainer.appendChild(star)
 }
 
-/* DATA DE TESTE */
+/* DATA DO ANIVERSÁRIO - HORÁRIO DE SÃO PAULO */
 
-const targetDate=new Date("January 1, 2024 00:00:00").getTime()
+const targetDate = new Date("2026-03-27T00:00:00-03:00").getTime();
 
 const countdownFunction=setInterval(function(){
 
@@ -217,11 +219,21 @@ clearInterval(countdownFunction)
 document.getElementById("countdown-section").classList.add("hidden")
 document.getElementById("password-section").classList.remove("hidden")
 
+}else{
+
+const days=Math.floor(distance/(1000*60*60*24))
+const hours=Math.floor((distance%(1000*60*60*24))/(1000*60*60))
+const minutes=Math.floor((distance%(1000*60*60))/(1000*60))
+const seconds=Math.floor((distance%(1000*60))/1000)
+
+document.getElementById("countdown").innerHTML=
+days+"d "+hours+"h "+minutes+"m "+seconds+"s"
+
 }
 
 },1000)
 
-/* senha com transição */
+/* senha */
 
 function checkPassword(){
 
