@@ -14,6 +14,11 @@ background:radial-gradient(circle at top,#7b2cbf,#240046);
 color:white;
 text-align:center;
 overflow-x:hidden;
+transition:opacity 1s ease;
+}
+
+.fade-out{
+opacity:0;
 }
 
 .stars{
@@ -196,7 +201,7 @@ star.style.animationDuration=(Math.random()*3+2)+"s"
 starsContainer.appendChild(star)
 }
 
-/* DATA DE TESTE (já passou) */
+/* DATA DE TESTE */
 
 const targetDate=new Date("January 1, 2024 00:00:00").getTime()
 
@@ -216,7 +221,7 @@ document.getElementById("password-section").classList.remove("hidden")
 
 },1000)
 
-/* senha */
+/* senha com transição */
 
 function checkPassword(){
 
@@ -224,8 +229,16 @@ const password=document.getElementById("password").value
 
 if(password==="30102025"){
 
+document.body.classList.add("fade-out")
+
+setTimeout(()=>{
+
 document.getElementById("password-section").classList.add("hidden")
 document.getElementById("secret-section").classList.remove("hidden")
+
+document.body.classList.remove("fade-out")
+
+},1000)
 
 }else{
 
