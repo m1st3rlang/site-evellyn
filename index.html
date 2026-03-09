@@ -14,11 +14,6 @@ background:radial-gradient(circle at top,#7b2cbf,#240046);
 color:white;
 text-align:center;
 overflow-x:hidden;
-transition:opacity 1s ease;
-}
-
-.fade-out{
-opacity:0;
 }
 
 .container{
@@ -42,7 +37,7 @@ margin-top:30px;
 padding:12px 20px;
 border:none;
 border-radius:10px;
-background:#d4a6ff;
+background:#e0b3ff;
 font-size:16px;
 cursor:pointer;
 }
@@ -52,13 +47,21 @@ width:100%;
 margin-top:20px;
 }
 
-/* fogos */
+/* canvas fogos */
 
-canvas{
+#fireworks{
 position:fixed;
 top:0;
 left:0;
+width:100%;
+height:100%;
 pointer-events:none;
+z-index:0;
+}
+
+.container{
+position:relative;
+z-index:2;
 }
 
 </style>
@@ -131,7 +134,7 @@ Te amo muito ❤️
 
 </div>
 
-<!-- PAGINA 3 FOTO CONVERSA -->
+<!-- PAGINA 3 CONVERSA -->
 
 <div id="conversation-section" class="hidden">
 
@@ -143,9 +146,7 @@ Te amo muito ❤️
 
 <p>
 
-<!-- ESCREVE AQUI O TEXTO QUE QUISERES -->
-
-AQUI VOCE ESCREVE O TEXTO PARA ELA SOBRE ESSE MOMENTO.
+AQUI VOCE ESCREVE O TEXTO QUE QUISERES PARA ELA.
 
 </p>
 
@@ -206,7 +207,7 @@ document.getElementById("error").innerText="Essa não foi a data que começou tu
 
 }
 
-/* IR PARA PAGINA 3 */
+/* PROXIMA PAGINA */
 
 function nextPage(){
 
@@ -215,7 +216,7 @@ document.getElementById("conversation-section").classList.remove("hidden")
 
 }
 
-/* FOGOS DE ARTIFICIO */
+/* FOGOS */
 
 const canvas=document.getElementById("fireworks")
 const ctx=canvas.getContext("2d")
@@ -229,19 +230,19 @@ function startFireworks(){
 
 setInterval(()=>{
 
-for(let i=0;i<50;i++){
+for(let i=0;i<40;i++){
 
 particles.push({
-x:canvas.width/2,
-y:canvas.height/2,
-dx:(Math.random()-0.5)*8,
-dy:(Math.random()-0.5)*8,
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height/2,
+dx:(Math.random()-0.5)*6,
+dy:(Math.random()-0.5)*6,
 life:100
 })
 
 }
 
-},500)
+},600)
 
 }
 
@@ -249,8 +250,7 @@ function animate(){
 
 requestAnimationFrame(animate)
 
-ctx.fillStyle="rgba(0,0,0,0.2)"
-ctx.fillRect(0,0,canvas.width,canvas.height)
+ctx.clearRect(0,0,canvas.width,canvas.height)
 
 particles.forEach((p,i)=>{
 
@@ -258,7 +258,7 @@ p.x+=p.dx
 p.y+=p.dy
 p.life--
 
-ctx.fillStyle="purple"
+ctx.fillStyle="white"
 ctx.fillRect(p.x,p.y,3,3)
 
 if(p.life<=0){
